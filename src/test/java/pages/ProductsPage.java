@@ -15,7 +15,7 @@ public class ProductsPage {
         return chromeBrowser.findElement(pageTitle).isDisplayed();
     }
 
-    public ProductsPage(WebDriver chromeBrowser){
+    public ProductsPage(WebDriver chromeBrowser) {
         this.chromeBrowser = chromeBrowser;
     }
 

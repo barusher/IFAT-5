@@ -11,9 +11,7 @@ import java.time.Duration;
 public class ChromeSetup {
 
     WebDriver chromeBrowser;
-
     LoginPage loginPage;
-
     ProductsPage productsPage;
 
     @BeforeMethod

@@ -13,6 +13,10 @@ public class LoginPage {
     By correctLoginButtonField = By.id("login-button");
     By errorMessage = By.xpath("//h3");
 
+    public LoginPage(WebDriver chromeBrowser) {
+        this.chromeBrowser = chromeBrowser;
+    }
+
     public void openPage() {
         chromeBrowser.get("https://www.saucedemo.com/");
     }
@@ -21,10 +25,6 @@ public class LoginPage {
         chromeBrowser.findElement(correctUsernameField).sendKeys(loginField);
         chromeBrowser.findElement(correctPasswordField).sendKeys(passwordField);
         chromeBrowser.findElement(correctLoginButtonField).click();
-    }
-
-    public LoginPage(WebDriver chromeBrowser) {
-        this.chromeBrowser = chromeBrowser;
     }
 
     public boolean isErrorMessageAppear() {

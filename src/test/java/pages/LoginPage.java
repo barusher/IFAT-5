@@ -3,22 +3,23 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+/**
+ * Selectors for https://www.saucedemo.com/
+ **/
 
-    WebDriver chromeBrowser;
+public class LoginPage extends BasePage {
 
-    // Selectors for https://www.saucedemo.com
     By correctUsernameField = By.cssSelector("[placeholder='Username']");
     By correctPasswordField = By.id("password");
     By correctLoginButtonField = By.id("login-button");
     By errorMessage = By.xpath("//h3");
 
     public LoginPage(WebDriver chromeBrowser) {
-        this.chromeBrowser = chromeBrowser;
+        super(chromeBrowser);
     }
 
     public void openPage() {
-        chromeBrowser.get("https://www.saucedemo.com/");
+        chromeBrowser.get(BASE_URL);
     }
 
     public void login(String loginField, String passwordField) {

@@ -19,7 +19,6 @@ public class ChromeSetup {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("--guest");
-
         chromeBrowser = new ChromeDriver(options);
         chromeBrowser.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         loginPage = new LoginPage(chromeBrowser);

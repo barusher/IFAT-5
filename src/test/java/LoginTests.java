@@ -16,7 +16,7 @@ public class LoginTests extends ChromeSetup {
         };
     }
 
-    @Test(dataProvider = "loginData", description = "Проверка захода на сайт под невалидным логином, но с правильным паролем")
+    @Test(dataProvider = "loginData")
     public void incorrectLoginTest(String user, String password, String error) {
         loginPage.openPage();
         loginPage.login(user, password);
@@ -24,14 +24,10 @@ public class LoginTests extends ChromeSetup {
         assertEquals(loginPage.errorMessageText(), error);
     }
 
-    @Test(description = "Проверка захода на сайт под валидным логином и паролем")
-    public void correctLoginTest() throws InterruptedException {
+    @Test
+    public void correctLoginTest() {
         loginPage.openPage();
-        Thread.sleep(2000);
         loginPage.login("standard_user", "secret_sauce");
-        Thread.sleep(2000);
         assertTrue(productsPage.isPageLoaded("Products"), "Page didn`t open");
     }
-
-
 }

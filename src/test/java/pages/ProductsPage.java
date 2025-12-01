@@ -14,21 +14,14 @@ public class ProductsPage extends BasePage {
 
     By backButton = By.cssSelector("[id='back-to-products']");
     By cartCounter = By.xpath("//*[@data-test='shopping-cart-badge']");
+    By pageTitle = By.xpath("//*[@data-test='title']*");
 
     public ProductsPage(WebDriver chromeBrowser) {
         super(chromeBrowser);
     }
 
-    public boolean isPageLoaded(String pageTitle) {
-        return chromeBrowser.findElement(By.xpath(TEXT_LOCATOR_PATTERN.formatted(pageTitle))).isDisplayed();
-    }
-
     public void showProductItem(By itemNameSelector) {
         chromeBrowser.findElement(itemNameSelector).click();
-    }
-
-    public void backToProductButton() {
-        chromeBrowser.findElement(backButton).click();
     }
 
     public boolean isBackToProductButtonAppear() {
@@ -40,8 +33,12 @@ public class ProductsPage extends BasePage {
         chromeBrowser.findElement(addItemToCart).click();
     }
 
-    public void addToCartClick(int itemOrder) {
-        chromeBrowser.findElements(By.xpath(TEXT_LOCATOR_PATTERN.formatted("Add to cart"))).get(itemOrder).click();
+    public void addToCartClick(int numberOfItems) {
+        chromeBrowser.findElements(By.xpath(TEXT_LOCATOR_PATTERN.formatted("Add to cart"))).get(numberOfItems).click();
+    }
+
+    public void switchToCart() {
+        chromeBrowser.findElement(cartCounter).click();
     }
 
     public int checkCartCounter() {

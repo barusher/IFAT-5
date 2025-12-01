@@ -1,10 +1,13 @@
 import org.openqa.selenium.By;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class ProductsPageTests extends ChromeSetup {
+
     @Test
     public void checkItemPage() {
         loginPage.openPage();
@@ -20,8 +23,8 @@ public class ProductsPageTests extends ChromeSetup {
         loginPage.openPage();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.isPageLoaded("Products");
-        productsPage.addToCartClick("Sauce Labs Fleece Jacket");
-        productsPage.addToCartClick("Sauce Labs Backpack");
+        productsPage.addToCartClick("Test.allTheThings() T-Shirt (Red)");
+        productsPage.addToCartClick("Sauce Labs Bolt T-Shirt");
         productsPage.addToCartClick(3);
         assertEquals(productsPage.checkCartCounter(), 3);
     }

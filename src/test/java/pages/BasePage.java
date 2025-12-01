@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,9 +13,13 @@ public class BasePage {
     WebDriver chromeBrowser;
     WebDriverWait webDriverWait;
 
+
     public BasePage(WebDriver chromeBrowser) {
         this.webDriverWait = new WebDriverWait(chromeBrowser, Duration.ofSeconds(5));
         this.chromeBrowser = chromeBrowser;
     }
 
+    public boolean isPageLoaded(String pageTitle) {
+        return chromeBrowser.findElement(By.xpath(TEXT_LOCATOR_PATTERN.formatted(pageTitle))).isDisplayed();
+    }
 }

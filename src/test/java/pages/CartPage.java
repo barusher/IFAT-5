@@ -19,6 +19,7 @@ public class CartPage extends BasePage {
         for (WebElement product : allProductsNames) {
             names.add(product.getText());
         }
+
         return names;
     }
 }

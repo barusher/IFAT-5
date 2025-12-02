@@ -1,10 +1,12 @@
+package tests;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class LoginTests extends ChromeSetup {
+public class LoginTests extends BaseTest {
 
     @DataProvider
     public Object[][] loginData() {
@@ -18,6 +20,7 @@ public class LoginTests extends ChromeSetup {
 
     @Test(dataProvider = "loginData")
     public void incorrectLoginTest(String user, String password, String error) {
+        System.out.println("LoginTest incorrect is running is thread : " + Thread.currentThread().getId());
         loginPage.openPage();
         loginPage.login(user, password);
         assertTrue(loginPage.isErrorMessageAppear(), "Error message does not appear");
@@ -26,6 +29,7 @@ public class LoginTests extends ChromeSetup {
 
     @Test
     public void correctLoginTest() {
+        System.out.println("LoginTest correct is running is thread : " + Thread.currentThread().getId());
         loginPage.openPage();
         loginPage.login("standard_user", "secret_sauce");
         assertTrue(productsPage.isPageLoaded("Products"), "Page didn`t open");

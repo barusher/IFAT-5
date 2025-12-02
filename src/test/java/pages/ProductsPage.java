@@ -14,7 +14,6 @@ public class ProductsPage extends BasePage {
 
     By backButton = By.cssSelector("[id='back-to-products']");
     By cartCounter = By.xpath("//*[@data-test='shopping-cart-badge']");
-    By pageTitle = By.xpath("//*[@data-test='title']*");
 
     public ProductsPage(WebDriver chromeBrowser) {
         super(chromeBrowser);

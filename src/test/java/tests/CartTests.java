@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class CartTests extends Setup {
+public class CartTests extends BaseTest {
 
     @Test
     public void checkItemsInCart() {

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class ProductsPageTests extends Setup {
+public class ProductsPageTests extends BaseTest {
 
     @Test
     public void checkItemPage() {

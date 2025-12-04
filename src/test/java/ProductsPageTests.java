@@ -1,12 +1,10 @@
-package tests;
-
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class ProductsPageTests extends BaseTest {
+public class ProductsPageTests extends ChromeSetup {
 
     @Test
     public void checkItemPage() {
@@ -20,7 +18,6 @@ public class ProductsPageTests extends BaseTest {
 
     @Test
     public void checkAddItems() {
-        System.out.println("ProductTest is running is thread : " + Thread.currentThread().getId());
         loginPage.openPage();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.isPageLoaded("Products");

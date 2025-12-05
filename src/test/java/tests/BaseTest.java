@@ -13,6 +13,7 @@ import pages.BasePage;
 import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.PropertyReader;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +25,10 @@ public class BaseTest {
     ProductsPage productsPage;
     CartPage cartPage;
     BasePage basePage;
+    String user;
+    String password;
+    String locked_user;
+    String incorrect_user;
 
     @Parameters({"browser"})
     @BeforeMethod
@@ -43,7 +48,10 @@ public class BaseTest {
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
         basePage = new BasePage(driver);
-
+        user = PropertyReader.getProperty("saucedemo.user");
+        password = PropertyReader.getProperty("saucedemo.password");
+        locked_user = PropertyReader.getProperty("saucedemo.locked-user");
+        incorrect_user = PropertyReader.getProperty("saucedemo.incorrect-user");
     }
 
     @AfterMethod

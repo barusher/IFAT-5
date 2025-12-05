@@ -5,13 +5,14 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class ProductsPageTests extends BaseTest {
 
     @Test
     public void checkItemPage() {
         loginPage.openPage();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         assertTrue(productsPage.isPageLoaded("Products"), "Page didn`t open");
         productsPage.showProductItem(By.xpath("//div[text()='Sauce Labs Backpack']"));
 
@@ -22,7 +23,7 @@ public class ProductsPageTests extends BaseTest {
     public void checkAddItems() {
         System.out.println("ProductTest is running is thread : " + Thread.currentThread().getId());
         loginPage.openPage();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         productsPage.isPageLoaded("Products");
         productsPage.addToCartClick("Test.allTheThings() T-Shirt (Red)");
         productsPage.addToCartClick("Sauce Labs Bolt T-Shirt");

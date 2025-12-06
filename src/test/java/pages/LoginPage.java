@@ -33,9 +33,9 @@ public class LoginPage extends BasePage {
         webDriver.findElement(correctLoginButtonField).click();
     }
 
-    public void login(String loginField, String passwordField) {
-        webDriver.findElement(correctUsernameField).sendKeys(loginField);
-        webDriver.findElement(correctPasswordField).sendKeys(passwordField);
+    public void login(String loginFieldValue, String passwordFieldValue) {
+        webDriver.findElement(correctUsernameField).sendKeys(loginFieldValue);
+        webDriver.findElement(correctPasswordField).sendKeys(passwordFieldValue);
         webDriver.findElement(correctLoginButtonField).click();
     }
 

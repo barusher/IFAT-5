@@ -10,10 +10,10 @@ import user.User;
 
 public class LoginPage extends BasePage {
 
-    By correctUsernameField = By.cssSelector("[placeholder='Username']");
-    By correctPasswordField = By.id("password");
-    By correctLoginButtonField = By.id("login-button");
-    By errorMessage = By.xpath("//*[@data-test='error']");
+    By UsernamePlaceHolder = By.cssSelector("[placeholder='Username']");
+    By PasswordPlaceHolder = By.id("password");
+    By LoginButtonPlaceHolder = By.id("login-button");
+    By errorMessagePlaceHolder = By.xpath("//*[@data-test='error']");
 
     public LoginPage(WebDriver chromeBrowser) {
         super(chromeBrowser);
@@ -29,25 +29,25 @@ public class LoginPage extends BasePage {
 
     public void login(User user) {
         enterLogin(user.getEmail());
-        webDriver.findElement(correctPasswordField).sendKeys(user.getPassword());
-        webDriver.findElement(correctLoginButtonField).click();
+        webDriver.findElement(PasswordPlaceHolder).sendKeys(user.getPassword());
+        webDriver.findElement(LoginButtonPlaceHolder).click();
     }
 
     public void login(String loginFieldValue, String passwordFieldValue) {
-        webDriver.findElement(correctUsernameField).sendKeys(loginFieldValue);
-        webDriver.findElement(correctPasswordField).sendKeys(passwordFieldValue);
-        webDriver.findElement(correctLoginButtonField).click();
+        webDriver.findElement(UsernamePlaceHolder).sendKeys(loginFieldValue);
+        webDriver.findElement(PasswordPlaceHolder).sendKeys(passwordFieldValue);
+        webDriver.findElement(LoginButtonPlaceHolder).click();
     }
 
     public void enterLogin(String userField) {
-        webDriver.findElement(correctUsernameField).sendKeys(userField);
+        webDriver.findElement(UsernamePlaceHolder).sendKeys(userField);
     }
 
     public boolean isErrorMessageAppear() {
-        return webDriver.findElement(errorMessage).isDisplayed();
+        return webDriver.findElement(errorMessagePlaceHolder).isDisplayed();
     }
 
     public String errorMessageText() {
-        return webDriver.findElement(errorMessage).getText();
+        return webDriver.findElement(errorMessagePlaceHolder).getText();
     }
 }

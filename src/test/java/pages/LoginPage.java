@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import user.User;
 
 /**
  * Selectors for https://www.saucedemo.com/
@@ -9,38 +10,44 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 
-    By correctUsernameField = By.cssSelector("[placeholder='Username']");
-    By correctPasswordField = By.id("password");
-    By correctLoginButtonField = By.id("login-button");
-    By errorMessage = By.xpath("//*[@data-test='error']");
+    By UsernamePlaceHolder = By.cssSelector("[placeholder='Username']");
+    By PasswordPlaceHolder = By.id("password");
+    By LoginButtonPlaceHolder = By.id("login-button");
+    By errorMessagePlaceHolder = By.xpath("//*[@data-test='error']");
 
     public LoginPage(WebDriver chromeBrowser) {
         super(chromeBrowser);
     }
 
     public void openPage() {
-        chromeBrowser.get(BASE_URL);
+        webDriver.get(BASE_URL);
     }
 
     public void openPage(String url) {
-        chromeBrowser.get(BASE_URL + url);
+        webDriver.get(BASE_URL + url);
     }
 
-    public void login(String loginField, String passwordField) {
-        chromeBrowser.findElement(correctUsernameField).sendKeys(loginField);
-        chromeBrowser.findElement(correctPasswordField).sendKeys(passwordField);
-        chromeBrowser.findElement(correctLoginButtonField).click();
+    public void login(User user) {
+        enterLogin(user.getEmail());
+        webDriver.findElement(PasswordPlaceHolder).sendKeys(user.getPassword());
+        webDriver.findElement(LoginButtonPlaceHolder).click();
     }
 
-    public void enterLogin(String loginField, String passwordField) {
-        chromeBrowser.findElement(correctUsernameField).sendKeys(loginField);
+    public void login(String loginFieldValue, String passwordFieldValue) {
+        webDriver.findElement(UsernamePlaceHolder).sendKeys(loginFieldValue);
+        webDriver.findElement(PasswordPlaceHolder).sendKeys(passwordFieldValue);
+        webDriver.findElement(LoginButtonPlaceHolder).click();
+    }
+
+    public void enterLogin(String userField) {
+        webDriver.findElement(UsernamePlaceHolder).sendKeys(userField);
     }
 
     public boolean isErrorMessageAppear() {
-        return chromeBrowser.findElement(errorMessage).isDisplayed();
+        return webDriver.findElement(errorMessagePlaceHolder).isDisplayed();
     }
 
     public String errorMessageText() {
-        return chromeBrowser.findElement(errorMessage).getText();
+        return webDriver.findElement(errorMessagePlaceHolder).getText();
     }
 }

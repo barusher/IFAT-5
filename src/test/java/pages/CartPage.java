@@ -9,12 +9,12 @@ import java.util.List;
 
 public class CartPage extends BasePage {
 
-    public CartPage(WebDriver chromeBrowser) {
-        super(chromeBrowser);
+    public CartPage(WebDriver webDriver) {
+        super(webDriver);
     }
 
     public ArrayList<String> getProductsNames() {
-        List<WebElement> allProductsNames = chromeBrowser.findElements(By.cssSelector(".inventory_item_name"));
+        List<WebElement> allProductsNames = webDriver.findElements(By.cssSelector(".inventory_item_name"));
         ArrayList<String> names = new ArrayList<>();
         for (WebElement product : allProductsNames) {
             names.add(product.getText());

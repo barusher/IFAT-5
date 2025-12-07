@@ -20,27 +20,27 @@ public class ProductsPage extends BasePage {
     }
 
     public void showProductItem(By itemNameSelector) {
-        chromeBrowser.findElement(itemNameSelector).click();
+        webDriver.findElement(itemNameSelector).click();
     }
 
     public boolean isBackToProductButtonAppear() {
-        return chromeBrowser.findElement(backButton).isDisplayed();
+        return webDriver.findElement(backButton).isDisplayed();
     }
 
     public void addToCartClick(String itemName) {
         By addItemToCart = By.xpath(ADD_TO_CART_BUTTON_PATTER.formatted(itemName));
-        chromeBrowser.findElement(addItemToCart).click();
+        webDriver.findElement(addItemToCart).click();
     }
 
     public void addToCartClick(int numberOfItems) {
-        chromeBrowser.findElements(By.xpath(TEXT_LOCATOR_PATTERN.formatted("Add to cart"))).get(numberOfItems).click();
+        webDriver.findElements(By.xpath(TEXT_LOCATOR_PATTERN.formatted("Add to cart"))).get(numberOfItems).click();
     }
 
     public void switchToCart() {
-        chromeBrowser.findElement(cartCounter).click();
+        webDriver.findElement(cartCounter).click();
     }
 
     public int checkCartCounter() {
-        return Integer.parseInt(chromeBrowser.findElement(cartCounter).getText());
+        return Integer.parseInt(webDriver.findElement(cartCounter).getText());
     }
 }

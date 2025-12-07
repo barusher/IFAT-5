@@ -3,24 +3,25 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
 
 public class BasePage {
 
-    public final static String BASE_URL = "https://www.saucedemo.com/";
+    public final static String BASE_URL = PropertyReader.getProperty("saucedemo.url");
     public final static String TEXT_LOCATOR_PATTERN = "//*[text()='%s']";
 
-    WebDriver chromeBrowser;
+    WebDriver webDriver;
     WebDriverWait webDriverWait;
 
-    public BasePage(WebDriver chromeBrowser) {
-        this.webDriverWait = new WebDriverWait(chromeBrowser, Duration.ofSeconds(5));
-        this.chromeBrowser = chromeBrowser;
+    public BasePage(WebDriver webDriver) {
+        this.webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        this.webDriver = webDriver;
     }
 
     public boolean isPageLoaded(String pageTitle) {
-        return chromeBrowser.findElement(By.xpath(TEXT_LOCATOR_PATTERN.formatted(pageTitle))).isDisplayed();
+        return webDriver.findElement(By.xpath(TEXT_LOCATOR_PATTERN.formatted(pageTitle))).isDisplayed();
     }
 }

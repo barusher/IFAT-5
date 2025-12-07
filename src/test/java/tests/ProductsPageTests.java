@@ -1,5 +1,6 @@
 package tests;
 
+import enums.Titles;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -13,18 +14,18 @@ public class ProductsPageTests extends BaseTest {
     public void checkItemPage() {
         loginPage.openPage();
         loginPage.login(withAdminPermission());
-        assertTrue(productsPage.isPageLoaded("Products"), "Page didn`t open");
-        productsPage.showProductItem(By.xpath("//div[text()='Sauce Labs Backpack']"));
+        assertTrue(productsPage.isPageLoaded(Titles.PRODUCTS.getDisplayName()), "Page didn`t open");
 
+        productsPage.showProductItem(By.xpath("//div[text()='Sauce Labs Backpack']"));
         assertTrue(productsPage.isBackToProductButtonAppear(), "Back to products button isn`t appear");
     }
 
     @Test
     public void checkAddItems() {
-        System.out.println("ProductTest is running is thread : " + Thread.currentThread().getId());
         loginPage.openPage();
         loginPage.login(withAdminPermission());
-        productsPage.isPageLoaded("Products");
+
+        productsPage.isPageLoaded(Titles.PRODUCTS.getDisplayName());
         productsPage.addToCartClick("Test.allTheThings() T-Shirt (Red)");
         productsPage.addToCartClick("Sauce Labs Bolt T-Shirt");
         productsPage.addToCartClick(3);

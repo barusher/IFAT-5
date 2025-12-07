@@ -1,5 +1,13 @@
 package tests;
 
+import enums.Titles;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.User;
@@ -21,20 +29,30 @@ public class LoginTests extends BaseTest {
         };
     }
 
+    @Epic("Авторизация")
+    @Feature("Негативные сценарии")
+    @Story("Логин с различными некорректными данными")
+    @TmsLink("IFAT-5")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Baranov Alex, tg=@brnvvv")
     @Test(dataProvider = "loginData")
     public void incorrectLoginTest(User user, String error) {
-        System.out.println("LoginTest incorrect is running is thread : " + Thread.currentThread().getId());
         loginPage.openPage();
         loginPage.login(user);
         assertTrue(loginPage.isErrorMessageAppear(), "Error message does not appear");
         assertEquals(loginPage.errorMessageText(), error);
     }
 
+    @Epic("Авторизация")
+    @Feature("Позитивные сценарии")
+    @Story("Успешный логин с валидными данными")
+    @TmsLink("IFAT-6")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Baranov Alex, tg=@brnvvv")
     @Test
     public void correctLoginTest() {
-        System.out.println("LoginTest correct is running is thread : " + Thread.currentThread().getId());
         loginPage.openPage();
         loginPage.login(withAdminPermission());
-        assertTrue(productsPage.isPageLoaded("Products"), "Page didn`t open");
+        assertTrue(productsPage.isPageLoaded(Titles.PRODUCTS.getDisplayName()), "Page didn`t open");
     }
 }

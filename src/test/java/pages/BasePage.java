@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,6 +22,7 @@ public class BasePage {
         this.webDriver = webDriver;
     }
 
+    @Step("Сhecks that page is loaded")
     public boolean isPageLoaded(String pageTitle) {
         return webDriver.findElement(By.xpath(TEXT_LOCATOR_PATTERN.formatted(pageTitle))).isDisplayed();
     }

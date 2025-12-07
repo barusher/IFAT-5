@@ -1,5 +1,6 @@
 package tests;
 
+import enums.Titles;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -9,10 +10,10 @@ public class CartTests extends BaseTest {
 
     @Test
     public void checkItemsInCart() {
-        System.out.println("CartTest is running is thread : " + Thread.currentThread().getId());
         loginPage.openPage();
         loginPage.login(withAdminPermission());
-        productsPage.isPageLoaded("Products");
+
+        productsPage.isPageLoaded(Titles.PRODUCTS.getDisplayName());
         productsPage.addToCartClick("Sauce Labs Fleece Jacket");
         productsPage.addToCartClick("Sauce Labs Backpack");
         productsPage.switchToCart();

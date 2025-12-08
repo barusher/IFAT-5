@@ -17,6 +17,7 @@ public class CartTests extends BaseTest {
         productsPage.addToCartClick("Sauce Labs Fleece Jacket");
         productsPage.addToCartClick("Sauce Labs Backpack");
         productsPage.switchToCart();
+
         assertEquals(cartPage.getProductsNames().size(), 2);
     }
 }

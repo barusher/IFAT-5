@@ -37,7 +37,7 @@ public class BaseTest {
     @Parameters({"browser"})
     @BeforeMethod
     public void setOptions(@Optional("chrome") String browser, ITestContext context) {
-        if(browser.equalsIgnoreCase("chrome")){
+        if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
@@ -49,10 +49,12 @@ public class BaseTest {
         }
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         context.setAttribute("driver", driver);
+
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
         basePage = new BasePage(driver);
+
         user = PropertyReader.getProperty("saucedemo.user");
         password = PropertyReader.getProperty("saucedemo.password");
         locked_user = PropertyReader.getProperty("saucedemo.locked-user");

@@ -46,9 +46,9 @@ public class LoginTests extends BaseTest {
     @Epic("Авторизация")
     @Feature("Позитивные сценарии")
     @Story("Успешный логин с валидными данными")
-    @TmsLink("IFAT-6")
+    @TmsLink("IFAT-5")
     @Severity(SeverityLevel.CRITICAL)
-    @Owner("Baranov Alex, tg=@brnvvv")
+    @Owner("Baranov Alexandr, tg=@brnvvv")
     @Test
     public void correctLoginTest() {
         loginPage.openPage();

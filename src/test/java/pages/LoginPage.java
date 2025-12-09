@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import user.User;
 
 /**
- * Селекторы для https://www.saucedemo.com/
+ * Селекторы для <a href="https://www.saucedemo.com/">...</a>
  **/
 
 public class LoginPage extends BasePage {
@@ -21,15 +21,17 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Открытие страницы по URL")
-    public void openPage() {
+    public LoginPage openPage() {
         webDriver.get(BASE_URL);
+        return this;
     }
 
     @Step("Авторизация с данными из User.class: логин = {user.email}, пароль = ******")
-    public void login(User user) {
+    public LoginPage login(User user) {
         enterLogin(user.getEmail());
         webDriver.findElement(passwordPlaceHolder).sendKeys(user.getPassword());
         webDriver.findElement(loginButtonPlaceHolder).click();
+        return this;
     }
 
     @Step("Авторизация с данными (строковые значения)")
@@ -40,8 +42,9 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Ввод логина")
-    public void enterLogin(String userField) {
+    public LoginPage enterLogin(String userField) {
         webDriver.findElement(usernamePlaceHolder).sendKeys(userField);
+        return this;
     }
 
     @Step("Проверка отображения сообщения об ошибке")

@@ -13,6 +13,7 @@ public class UserFactory {
                 PropertyReader.getProperty("saucedemo.password"));
     }
 
+
     public static User withIncorrectEmailPermission() {
         return new User(PropertyReader.getProperty("saucedemo.incorrect-user"),
                 PropertyReader.getProperty("saucedemo.password"));

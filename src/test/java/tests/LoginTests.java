@@ -11,21 +11,21 @@ import io.qameta.allure.TmsLink;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.User;
-import user.UserFactory;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static user.UserFactory.withAdminPermission;
+import static user.UserFactory.*;
+import static user.UserFactory.withLockedPermission;
 
 public class LoginTests extends BaseTest {
 
     @DataProvider
     public Object[][] loginData() {
         return new Object[][]{
-                {UserFactory.withLockedPermission(), "Epic sadface: Sorry, this user has been locked out."},
-                {UserFactory.withEmptyEmailPermission(), "Epic sadface: Username is required"},
-                {UserFactory.withEmptyPasswordPermission(), "Epic sadface: Password is required"},
-                {UserFactory.withIncorrectEmailPermission(), "Epic sadface: Username and password do not match any user in this service"}
+                {withLockedPermission(), "Epic sadface: Sorry, this user has been locked out."},
+                {withEmptyEmailPermission(), "Epic sadface: Username is required"},
+                {withEmptyPasswordPermission(), "Epic sadface: Password is required"},
+                {withIncorrectEmailPermission(), "Epic sadface: Username and password do not match any user in this service"}
         };
     }
 
@@ -37,8 +37,9 @@ public class LoginTests extends BaseTest {
     @Owner("Baranov Alex, tg=@brnvvv")
     @Test(dataProvider = "loginData")
     public void incorrectLoginTest(User user, String error) {
-        loginPage.openPage();
-        loginPage.login(user);
+        loginPage
+                .openPage()
+                .login(user);
         assertTrue(loginPage.isErrorMessageAppear(), "Error message does not appear");
         assertEquals(loginPage.errorMessageText(), error);
     }
@@ -51,8 +52,10 @@ public class LoginTests extends BaseTest {
     @Owner("Baranov Alexandr, tg=@brnvvv")
     @Test
     public void correctLoginTest() {
-        loginPage.openPage();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .openPage()
+                .login(withAdminPermission());
+
         assertTrue(productsPage.isPageLoaded(Titles.PRODUCTS.getDisplayName()), "Page didn`t open");
     }
 }

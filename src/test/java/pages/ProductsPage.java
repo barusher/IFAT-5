@@ -21,8 +21,9 @@ public class ProductsPage extends BasePage {
     }
 
     @Step("Открытие карточки товара")
-    public void showProductItem(By itemNameSelector) {
+    public ProductsPage showProductItem(By itemNameSelector) {
         webDriver.findElement(itemNameSelector).click();
+        return this;
     }
 
     @Step("Проверка отображения кнопки 'Back to products'")
@@ -31,19 +32,22 @@ public class ProductsPage extends BasePage {
     }
 
     @Step("Добавление товара '{itemName}' в корзину")
-    public void addToCartClick(String itemName) {
+    public ProductsPage addToCartClick(String itemName) {
         By addItemToCart = By.xpath(ADD_TO_CART_BUTTON_PATTER.formatted(itemName));
         webDriver.findElement(addItemToCart).click();
+        return this;
     }
 
     @Step("Добавление товара по индексу {numberOfItems} в корзину")
-    public void addToCartClick(int numberOfItems) {
+    public ProductsPage addToCartClick(int numberOfItems) {
         webDriver.findElements(By.xpath(TEXT_LOCATOR_PATTERN.formatted("Add to cart"))).get(numberOfItems).click();
+        return this;
     }
 
     @Step("Переход в корзину")
-    public void switchToCart() {
+    public ProductsPage switchToCart() {
         webDriver.findElement(cartCounter).click();
+        return this;
     }
 
     @Step("Проверка счетчика товаров в корзине")
